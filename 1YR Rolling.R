@@ -18,7 +18,7 @@ startUp = function(startUp)
 {
   library(quantmod); library(alphavantager); library(tidyquant); 
   library(readxl); library(graphics); library(data.table); library(xts)
-  api_key <- "AS95KWMG5YHUS6VL"; assign("api_key", api_key, envir = globalenv())
+  api_key <- "A**************L"; assign("api_key", api_key, envir = globalenv())
   ticker = toupper(readline(prompt = "Input ticker symbol: ")) ;assign("ticker", 
             ticker, envir = globalenv())
   placeholder <- ""; assign("placeholder", placeholder, envir = globalenv())
@@ -93,6 +93,9 @@ chart_ticker = function(chart_ticker)
 
 ## Informs whether to BUY/SELL, adjusts Broker Signal (functionality not 
 # implemented yet)
+## Remove "#" for Sys.Sleep and retrieve_ticker() to enable looping, "60" 
+# indicates 60 seconds wait until looping back to retrieve_ticker() function-
+# change this to "86400" to loop once every 24 hours 
 
 ################################################################################
 
@@ -114,20 +117,6 @@ startUp()
 
 ################################################################################
 
-                              ###  TEST AREA  ###
-
-################################################################################
-
-MACD_Signal <- MACD(TICKER_DATA_XTS$close, fast = 50, slow =200);MACD_Signal<- 
-  cbind(MACD_Signal$macd); MACD_Signal<-na.locf(MACD_Signal,fromLast 
-                                                = TRUE)
-MACD_Signal[MACD_Signal$macd > 0.05] <- 0
-MACD_Signal[MACD_Signal$macd < -0.05] <-max(TICKER_DATA_XTS$close)
-MACD_Signal[MACD_Signal$macd != 0] <- max(TICKER_DATA_XTS$close)
-assign("MACD_Signal", MACD_Signal, env = globalenv())
-
-
-New <- cbind(TICKER_DATA_XTS$close, BS_Signal$EMA, MACD_Signal$macd)
 
 
 
